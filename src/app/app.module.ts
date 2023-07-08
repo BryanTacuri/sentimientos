@@ -7,6 +7,8 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { es_ES } from 'ng-zorro-antd/i18n';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import es from '@angular/common/locales/es';
+import { NgApexchartsModule } from 'ng-apexcharts';
+
 import {
   SocialLoginModule,
   SocialAuthServiceConfig,
@@ -46,6 +48,7 @@ registerLocaleData(es);
     BrowserModule,
     AppRoutingModule,
     SocialLoginModule,
+    NgApexchartsModule,
 
     FormsModule,
     NzIconModule.forRoot(icons),
