@@ -1,0 +1,14 @@
+.container{
+
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	align-content: space-evenly;
+    background-color: white;
+    height: 70px;
+}
+
+
+ 

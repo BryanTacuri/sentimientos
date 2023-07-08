@@ -1,0 +1,40 @@
+
+.ant-page-header-heading-title {
+    margin-right: 12px;
+    margin-bottom: 0;
+    color: #3e467d;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 32px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.ant-descriptions-item-container .ant-descriptions-item-label {
+  display: inline-flex;
+  align-items: baseline;
+  color: #57606f !important;
+}
+
+.ant-descriptions-item-label {
+  color: #2f3542 !important;
+}
+
+
+
+.ant-descriptions-title {
+    flex: auto;
+    overflow: hidden;
+ 
+  color: #333C83;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.5715;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+nz-date-picker,
+nz-range-picker {
+  margin: 0 8px 12px 0;
+}

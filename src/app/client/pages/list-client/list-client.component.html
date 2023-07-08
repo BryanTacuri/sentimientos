@@ -1,0 +1,48 @@
+<div class="site-page-header-ghost-wrapper animate__animated animate__fadeIn">
+  <nz-page-header [nzGhost]="false">
+    <nz-page-header-title>Clientes</nz-page-header-title>
+
+  </nz-page-header>
+</div>
+<app-barra></app-barra>
+
+
+<br>
+
+
+<nz-spin class="animate__animated animate__fadeIn" [nzSpinning]="loading">
+  <nz-table #sortTable [nzData]="clientes" nzTableLayout="fixed">
+    <thead>
+      <tr>
+        <th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority">
+          {{ column.title }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of sortTable.data">
+        <td>{{ cliente.nombre }}</td>
+        <td>{{ cliente.apellido }}</td>
+        <td>{{ cliente.email }}</td>
+        <td>{{ cliente.telefono }}</td>
+        <td>{{ cliente.direccion }}</td>
+        <td>
+          <a (click)="editRow(cliente)">Editar</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a style="color: #ff4d4f" nz-popconfirm nzPopconfirmTitle="¿Esta seguro de eliminar el cliente?"
+            (nzOnConfirm)="deleteRow(cliente.id)">Eliminar</a>
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+
+  </nz-table>
+
+</nz-spin>
+
+
+<app-modal-client *ngIf="isVisible" [cliente]="cliente" [isVisible]="isVisible"
+  (isVisibleChange)="closeModal($event)"></app-modal-client>

@@ -1,0 +1,71 @@
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="title" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+
+
+    <form nz-form [formGroup]="formCliente">
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Nombre</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Por favor escriba un nombre!">
+          <nz-input-group>
+            <input type="text" formControlName="nombre" nz-input placeholder="Nombre del cliente" />
+          </nz-input-group>
+
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Apellido</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Por favor escriba un apellido!">
+          <nz-input-group>
+            <input type="text" formControlName="apellido" nz-input placeholder="Apellido del cliente" />
+          </nz-input-group>
+
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired nzFor="email">E-mail</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Por favor escriba un e-mail correcto!">
+          <nz-input-group>
+            <input type="text" formControlName="email" nz-input placeholder="E-mail del cliente" />
+          </nz-input-group>
+
+        </nz-form-control>
+      </nz-form-item>
+
+
+
+      <nz-form-item>
+
+        <nz-form-label [nzSpan]="7" nzFor="telefono">Telefono</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Por favor escriba una dirección">
+          <nz-input-group>
+            <input type="text" formControlName="telefono" nz-input placeholder="Telefono del cliente" />
+          </nz-input-group>
+
+        </nz-form-control>
+
+      </nz-form-item>
+
+
+      <nz-form-item>
+
+        <nz-form-label [nzSpan]="7" nzFor="direccion">Direccion</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Por favor escriba una dirección">
+          <nz-input-group>
+            <input type="text" formControlName="direccion" nz-input placeholder="Dirección del cliente" />
+          </nz-input-group>
+
+        </nz-form-control>
+
+      </nz-form-item>
+
+
+
+
+
+    </form>
+
+  </ng-container>
+</nz-modal>

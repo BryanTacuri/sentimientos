@@ -1,0 +1,54 @@
+<nz-spin [nzSpinning]="loading">
+
+    <div class="container">
+        <div class="center animate__animated animate__backInLeft">
+
+            <img style="width: 14%; height: 10%; margin-top: 30px;" [src]="this.urlImageLogo " alt="">
+
+        </div>
+        <br>
+
+        <br>
+        <div class="center animate__animated animate__backInRight">
+            <form nz-form [formGroup]="validateFrm" class="login-form" (ngSubmit)="signInWithFB()">
+
+                <h1 clas="nameLogin">Login</h1>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Por favor ingrese un usuario">
+                        <nz-input-group nzPrefixIcon="user" style="color: #434343">
+                            <input type="text" nz-input formControlName="usuario" placeholder="Usuario" />
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Por favor escriba una contraseña">
+                        <nz-input-group [nzSuffix]="suffixTemplate2" nzPrefixIcon="lock">
+                            <input [type]="passwordVisible ? 'text' : 'password'" nz-input formControlName="password"
+                                placeholder="Password" />
+                        </nz-input-group>
+                        <ng-template #suffixTemplate2>
+                            <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                                (click)="passwordVisible = !passwordVisible"></i>
+                        </ng-template>
+                    </nz-form-control>
+                </nz-form-item>
+
+
+
+                <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Iniciar
+                    sesión</button>
+
+
+                <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Iniciar
+                    sesión face</button>
+
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+</nz-spin>
