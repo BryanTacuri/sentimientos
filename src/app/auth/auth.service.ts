@@ -8,14 +8,25 @@ import { SessionStorageService } from '../services/session.service';
 export class AuthService {
   isAuthenticated: boolean;
   idAdmin: any;
+  isAuthenticatedInluencer: boolean;
 
   private isAuth = new Subject<boolean>();
   isAuthChallange$ = this.isAuth.asObservable();
+
+  private isAuthI = new Subject<boolean>();
+  isAuthChallangeI$ = this.isAuthI.asObservable();
 
   constructor(private ss: SessionStorageService) {
     if (this.ss.getItem('isAuthenticated') !== '') {
       this.isAuthenticated = this.ss.getItem('isAuthenticated');
       this.isAuth.next(this.isAuthenticated);
+    }
+
+    if (this.ss.getItem('isAuthenticatedInluencer') !== '') {
+      this.isAuthenticatedInluencer = this.ss.getItem(
+        'isAuthenticatedInluencer'
+      );
+      this.isAuthI.next(this.isAuthenticatedInluencer);
     }
   }
 
@@ -29,6 +40,12 @@ export class AuthService {
     this.isAuthenticated = false;
     this.ss.setItem('isAuthenticated', '');
     this.isAuth.next(false);
+  }
+
+  public setIsAuthInfluncer(nombre: boolean) {
+    this.isAuthenticatedInluencer = nombre;
+    this.ss.setItem('isAuthenticatedInluencer', nombre);
+    this.isAuthI.next(nombre);
   }
 
   public CerrarSesion() {

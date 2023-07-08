@@ -1,17 +1,17 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  FacebookLoginProvider,
   SocialAuthService,
+  FacebookLoginProvider,
 } from 'angularx-social-login';
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
-  selector: 'app-sidenav',
-  templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.css'],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
 })
-export class SidenavComponent implements OnInit {
+export class HomeComponent implements OnInit {
   title = '<el_HACKATHON>';
   isCollapsed = false;
   offsetTop = 0;
@@ -36,7 +36,6 @@ export class SidenavComponent implements OnInit {
       console.log(this.user);
       this.loggedIn = user != null;
       if (this.loggedIn) {
-        console.log('entro');
         this.router.navigate(['/analytics']);
       }
     });

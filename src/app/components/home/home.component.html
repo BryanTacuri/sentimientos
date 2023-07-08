@@ -1,0 +1,42 @@
+<nz-layout style="min-height: 100vh;">
+
+    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+        <div class="logo">
+            Hackathon
+        </div>
+        <ul nz-menu nzTheme="dark" nzMode="inline">
+            <li *ngFor="let item of menuItems" nz-submenu [nzTitle]="item.title" [nzIcon]="item.icon">
+                <ul>
+                    <li *ngFor="let subItem of item.subItems" nz-menu-item nzMatchRouter nzMatchRouterExact
+                        [routerLink]="subItem.routerLink">{{ subItem.title }}</li>
+                </ul>
+            </li>
+        </ul>
+
+    </nz-sider>
+    <nz-layout>
+        <nz-header>
+
+            <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+                (click)="isCollapsed = !isCollapsed"></i>
+            <div nzMode="horizontal">
+
+                <h1>
+                    &lt;<span class="black-text">el_</span><span class="green-text">HACKATHON</span>&gt;
+                </h1>
+
+            </div>
+
+        </nz-header>
+        <br>
+        <nz-content>
+
+            <router-outlet></router-outlet>
+
+        </nz-content>
+
+        <nz-footer>
+            <app-footer></app-footer>
+        </nz-footer>
+    </nz-layout>
+</nz-layout>

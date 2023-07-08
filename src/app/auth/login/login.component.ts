@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
       this.authService.setIsAuth(true);
       setTimeout(() => {
         this.loading = false;
-        this.router.navigate(['/home']);
+        this.router.navigate(['/analytics']);
       }, 1200);
     } else {
       this.loading = false;

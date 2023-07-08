@@ -10,7 +10,7 @@
 
         <br>
         <div class="center animate__animated animate__backInRight">
-            <form nz-form [formGroup]="validateFrm" class="login-form" (ngSubmit)="signInWithFB()">
+            <form nz-form [formGroup]="validateFrm" class="login-form" (ngSubmit)="submitForm()">
 
                 <h1 clas="nameLogin">Login</h1>
                 <nz-form-item>
@@ -37,10 +37,6 @@
 
                 <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Iniciar
                     sesión</button>
-
-
-                <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Iniciar
-                    sesión face</button>
 
 
 

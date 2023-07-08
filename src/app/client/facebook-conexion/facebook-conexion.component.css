@@ -1,0 +1,53 @@
+body {
+    background-color: #3b5998;
+    color:#fff;
+    font-family: "Helvetica", Arial, sans-serif;
+  }
+  .contenido {
+    width: 500px;
+    height: auto;
+    margin: auto;
+    overflow: hidden;
+    text-align: center;
+  }
+  .titulo {
+    font-size: 40px;
+    text-shadow: 0px 1px rgba(0,0,0,0.4);
+    font-weight: bold;
+    margin: 0;
+    margin-top: 20px;
+  }
+  .subtitulo {
+    font-size: 20px;
+    opacity: 0.3;
+    margin: 0;
+  }
+  .contenido2 {
+    margin-top: 30px;
+    height: auto;
+    padding: 5px;
+    overflow: hidden;
+  }
+  .facebook-button {
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 40px;
+    background-image:-webkit-linear-gradient(#3b5998, #314b83);
+    display: inline-block;
+    border-radius: 5px;
+    border: solid 1px #283e6b;
+    box-shadow: inset 0px 1px rgba(255,255,255,0.2);
+    text-shadow: 0px 1px rgba(0,0,0,0.4);
+    font-weight: bold;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.3s;
+    &:hover {
+    background-image:-webkit-linear-gradient(#4466ac, #34518e);
+  }
+   &:active {
+      box-shadow: inset 0px 5px 15px rgba(0,0,0,0.3), 0px 1px rgba(255,255,255,0.2);
+  }
+  }

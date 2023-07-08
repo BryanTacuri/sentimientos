@@ -27,6 +27,8 @@ import { registerLocaleData } from '@angular/common';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { icons } from './models/Icons';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AnalyticsComponent } from './components/analytics/analytics.component';
+import { HomeComponent } from './components/home/home.component';
 
 registerLocaleData(es);
 
@@ -37,6 +39,8 @@ registerLocaleData(es);
     FooterComponent,
     SidenavComponent,
     NotFoundComponent,
+    AnalyticsComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

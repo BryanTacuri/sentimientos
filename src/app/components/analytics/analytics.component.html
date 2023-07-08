@@ -1,0 +1,56 @@
+<div style="background-color: white;">
+
+    <nz-page-header class="site-page-header" nzTitle="Gráfico general"></nz-page-header>
+</div>
+
+<div class="container">
+    <div class="select-container">
+        <label class="label">Selecciona una página:</label>
+        <nz-select class="custom-select" [(ngModel)]="selectedProvince" (ngModelChange)="provinceChange($event)">
+            <nz-option *ngFor="let p of provinceData" [nzValue]="p" [nzLabel]="p"></nz-option>
+        </nz-select>
+    </div>
+
+    <div class="chart-container">
+
+        <div class="chart"></div>
+    </div>
+
+</div>
+
+
+<div style="background-color: white;">
+
+    <nz-page-header class="site-page-header" nzTitle="Gráfico por publicación"></nz-page-header>
+</div>
+
+<div class="container">
+
+    <div class="select-container">
+        <label class="label">Selecciona una publicación:</label>
+
+        <nz-select [(ngModel)]="selectedCity">
+            <nz-option *ngFor="let c of cityData[selectedProvince]" [nzValue]="c" [nzLabel]="c"></nz-option>
+        </nz-select>
+    </div>
+
+    <nz-range-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
+    <br>
+
+
+
+</div>
+
+<div class="container2">
+    <div class="chart-buttons">
+        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Grafico 1</button>
+        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Grafico 2</button>
+        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Grafico 3</button>
+        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Grafico 4</button>
+    </div>
+
+
+    <div class="chart">
+        <!-- Aquí se mostrarán los gráficos adicionales -->
+    </div>
+</div>
