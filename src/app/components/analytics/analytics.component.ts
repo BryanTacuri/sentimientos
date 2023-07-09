@@ -259,95 +259,21 @@ export class AnalyticsComponent implements OnInit {
       finDate: '2023-07-20',
     };
 
-    //desde aqui borrar
-    const endpointData: any = {
-      access_token: null,
-      name: null,
-      id: null,
-      listFeed: [
-        {
-          id: '660261270686611_776103240971957',
-          message: 'test',
-          created_time: '2023-07-08T07:33:11+0000',
-          totalComentario: '3',
-        },
-        {
-          id: '660261270686611_654098323172450',
-          message:
-            'Honor y respeto a los grandes maestros  gracias por tomar en cuenta a este cervidor un fuerte abrazo  a mis hermano Adrian Chillemi y a Luis Romero mis respetos siempre',
-          created_time: '2022-12-20T19:03:40+0000',
-          totalComentario: '5',
-        },
-        {
-          id: '660261270686611_4639085656137466',
-          message: null,
-          created_time: '2021-07-14T18:36:27+0000',
-          totalComentario: '10',
-        },
-      ],
-      totalComentario: 10,
-      totalComments: {
-        positive: 10,
-        negative: 3,
-        neutral: 4,
-      },
-    };
-
-    this.graficoPublicacionesFecha1(endpointData);
-    this.graficoPastelFecha(endpointData);
-
-    this.graficosFiltrados = true;
-
-    //desde aqui dejar
-    /*
     this.analyticsService.obtenerGraficoGeneral(data).subscribe(
       (response: any) => {
-        //const endpointData: any = response;
-        const endpointData: any = {
-          access_token: null,
-          name: null,
-          id: null,
-          listFeed: [
-            {
-              id: '660261270686611_776103240971957',
-              message: 'test',
-              created_time: '2023-07-08T07:33:11+0000',
-              totalComentario: '3',
-            },
-            {
-              id: '660261270686611_654098323172450',
-              message:
-                'Honor y respeto a los grandes maestros  gracias por tomar en cuenta a este cervidor un fuerte abrazo  a mis hermano Adrian Chillemi y a Luis Romero mis respetos siempre',
-              created_time: '2022-12-20T19:03:40+0000',
-              totalComentario: '5',
-            },
-            {
-              id: '660261270686611_4639085656137466',
-              message: null,
-              created_time: '2021-07-14T18:36:27+0000',
-              totalComentario: '10',
-            },
-          ],
-          totalComentario: 2,
-          totalComments: {
-            positive: 10,
-            negative: 3,
-            neutral: 4,
-          },
-        };
+        const endpointData: any = response;
 
         this.primerGrafico(endpointData);
         this.segundoGrafico(endpointData);
         this.loading = false;
-        this.graficos = true;
+        this.graficosFiltrados = true;
       },
       (error) => {
         console.error(error);
         this.loading = false;
-        this.graficos = false;
+        this.graficosFiltrados = false;
       }
     );
-*/
   }
 
   postChange(value: string): void {
@@ -384,59 +310,9 @@ export class AnalyticsComponent implements OnInit {
       finDate: this.finDate,
     };
 
-    const endpointData: any = {
-      access_token: null,
-      name: null,
-      id: null,
-      listFeed: [
-        {
-          id: '660261270686611_776103240971957',
-          message: 'test',
-          created_time: '2023-07-08T07:33:11+0000',
-          totalComentario: '3',
-        },
-        {
-          id: '660261270686611_654098323172450',
-          message:
-            'Honor y respeto a los grandes maestros  gracias por tomar en cuenta a este cervidor un fuerte abrazo  a mis hermano Adrian Chillemi y a Luis Romero mis respetos siempre',
-          created_time: '2022-12-20T19:03:40+0000',
-          totalComentario: '5',
-        },
-        {
-          id: '660261270686611_4639085656137466',
-          message: null,
-          created_time: '2021-07-14T18:36:27+0000',
-          totalComentario: '10',
-        },
-      ],
-      totalComentario: 12,
-      totalComments: {
-        positive: 10,
-        negative: 3,
-        neutral: 4,
-      },
-    };
-
-    this.graficoPastelFecha(endpointData);
-
-    this.graficosFiltrados = true;
-
-    //desde aqui dejar
-    /*
     this.analyticsService.obtenerTotalReaccionesFecha(data).subscribe(
       (response: any) => {
-        //const endpointData: any = response;
-        const endpointData: any = {
-          id: null,
-          message: null,
-          created_time: null,
-          totalComentario: 0,
-          totalComments: {
-            positive: 10,
-            negative: 3,
-            neutral: 4,
-          },
-        };
+        const endpointData: any = response;
 
         this.graficoPastelFecha(endpointData);
 
@@ -449,7 +325,7 @@ export class AnalyticsComponent implements OnInit {
         this.loading = false;
         this.graficosFiltrados = false;
       }
-    ); */
+    );
   }
 
   totalComentariosFecha() {
@@ -464,59 +340,9 @@ export class AnalyticsComponent implements OnInit {
       finDate: this.finDate,
     };
 
-    const endpointData: any = {
-      access_token: null,
-      name: null,
-      id: null,
-      listFeed: [
-        {
-          id: '660261270686611_776103240971957',
-          message: 'test',
-          created_time: '2023-07-08T07:33:11+0000',
-          totalComentario: '3',
-        },
-        {
-          id: '660261270686611_654098323172450',
-          message:
-            'Honor y respeto a los grandes maestros  gracias por tomar en cuenta a este cervidor un fuerte abrazo  a mis hermano Adrian Chillemi y a Luis Romero mis respetos siempre',
-          created_time: '2022-12-20T19:03:40+0000',
-          totalComentario: '5',
-        },
-        {
-          id: '660261270686611_4639085656137466',
-          message: null,
-          created_time: '2021-07-14T18:36:27+0000',
-          totalComentario: '10',
-        },
-      ],
-      totalComentario: 0,
-      totalComments: {
-        positive: 10,
-        negative: 3,
-        neutral: 4,
-      },
-    };
-
-    this.graficoPastelFecha(endpointData);
-
-    this.graficosFiltrados = true;
-
-    //desde aqui dejar
-    /*
     this.analyticsService.obtenerTotalComentarioFecha(data).subscribe(
       (response: any) => {
-        //const endpointData: any = response;
-        const endpointData: any = {
-          id: null,
-          message: null,
-          created_time: null,
-          totalComentario: 10,
-          totalComments: {
-            positive: 10,
-            negative: 3,
-            neutral: 4,
-          },
-        };
+        const endpointData: any = response;
 
         this.graficoPastelFecha(endpointData);
 
@@ -529,7 +355,7 @@ export class AnalyticsComponent implements OnInit {
         this.loading = false;
         this.graficosFiltrados = false;
       }
-    ); */
+    );
   }
   graficoPastelFecha(endpointData: any) {
     // Obtener los valores de "totalComentario" y "totalComments"
@@ -576,81 +402,9 @@ export class AnalyticsComponent implements OnInit {
       finDate: this.finDate,
     };
 
-    const endpointData: any = {
-      access_token: null,
-      name: null,
-      id: null,
-      listFeed: [
-        {
-          id: '660261270686611_776103240971957',
-          message: 'test',
-          created_time: '2023-07-08T07:33:11+0000',
-          totalComentario: '3',
-        },
-        {
-          id: '660261270686611_654098323172450',
-          message:
-            'Honor y respeto a los grandes maestros  gracias por tomar en cuenta a este cervidor un fuerte abrazo  a mis hermano Adrian Chillemi y a Luis Romero mis respetos siempre',
-          created_time: '2022-12-20T19:03:40+0000',
-          totalComentario: '5',
-        },
-        {
-          id: '660261270686611_4639085656137466',
-          message: null,
-          created_time: '2021-07-14T18:36:27+0000',
-          totalComentario: '10',
-        },
-      ],
-      totalComentario: 11,
-      totalComments: {
-        positive: 10,
-        negative: 3,
-        neutral: 4,
-      },
-    };
-
-    this.graficoPublicacionesFecha1(endpointData);
-    this.graficoPastelFecha(endpointData);
-
-    this.graficosFiltrados = true;
-
-    //desde aqui dejar
-    /*
     this.analyticsService.obtenerTotalPublicacionesFecha(data).subscribe(
       (response: any) => {
-        //const endpointData: any = response;
-        const endpointData: any = {
-          access_token: null,
-          name: null,
-          id: null,
-          listFeed: [
-            {
-              id: '660261270686611_776103240971957',
-              message: 'test',
-              created_time: '2023-07-08T07:33:11+0000',
-              totalComentario: '3',
-            },
-            {
-              id: '660261270686611_654098323172450',
-              message:
-                'Honor y respeto a los grandes maestros  gracias por tomar en cuenta a este cervidor un fuerte abrazo  a mis hermano Adrian Chillemi y a Luis Romero mis respetos siempre',
-              created_time: '2022-12-20T19:03:40+0000',
-              totalComentario: '5',
-            },
-            {
-              id: '660261270686611_4639085656137466',
-              message: null,
-              created_time: '2021-07-14T18:36:27+0000',
-              totalComentario: '10',
-            },
-          ],
-          totalComentario: 2,
-          totalComments: {
-            positive: 10,
-            negative: 3,
-            neutral: 4,
-          },
-        };
+        const endpointData: any = response;
 
         this.graficoPublicacionesFecha1(endpointData);
         this.graficoPastelFecha(endpointData);
@@ -664,7 +418,7 @@ export class AnalyticsComponent implements OnInit {
         this.loading = false;
         this.graficosFiltrados = false;
       }
-    ); */
+    );
   }
   graficoPublicacionesFecha1(endpointData: any) {
     // Obtener los datos del endpoint
@@ -778,59 +532,9 @@ export class AnalyticsComponent implements OnInit {
       sentiment: value,
     };
 
-    const endpointData: any = {
-      access_token: null,
-      name: null,
-      id: null,
-      listFeed: [
-        {
-          id: '660261270686611_776103240971957',
-          message: 'test',
-          created_time: '2023-07-08T07:33:11+0000',
-          totalComentario: '3',
-        },
-        {
-          id: '660261270686611_654098323172450',
-          message:
-            'Honor y respeto a los grandes maestros  gracias por tomar en cuenta a este cervidor un fuerte abrazo  a mis hermano Adrian Chillemi y a Luis Romero mis respetos siempre',
-          created_time: '2022-12-20T19:03:40+0000',
-          totalComentario: '5',
-        },
-        {
-          id: '660261270686611_4639085656137466',
-          message: null,
-          created_time: '2021-07-14T18:36:27+0000',
-          totalComentario: '10',
-        },
-      ],
-      totalComentario: 2,
-      totalComments: {
-        positive: 10,
-        negative: 3,
-        neutral: 4,
-      },
-    };
-
-    this.graficoPastelFechaUltimo(endpointData);
-
-    this.mostrarUltmo = true;
-
-    //desde aqui dejar
-    /*
     this.analyticsService.obtenerTotalComentarioSentimiento(data).subscribe(
       (response: any) => {
-        //const endpointData: any = response;
-        const endpointData: any = {
-          id: null,
-          message: null,
-          created_time: null,
-          totalComentario: 10,
-          totalComments: {
-            positive: 10,
-            negative: 3,
-            neutral: 4,
-          },
-        };
+        const endpointData: any = response;
 
         this.graficoPastelFecha(endpointData);
 
@@ -842,7 +546,7 @@ export class AnalyticsComponent implements OnInit {
         this.loading = false;
         this.mostrarUltmo = false;
       }
-    ); */
+    );
   }
 
   graficoPastelFechaUltimo(endpointData: any) {
