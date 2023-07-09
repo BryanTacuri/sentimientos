@@ -9,12 +9,12 @@
     <div class="container">
         <div class="select-container">
             <label class="label">Selecciona una página:</label>
-            <nz-select class="custom-select" [(ngModel)]="selectedProvince" (ngModelChange)="provinceChange($event)">
-                <nz-option *ngFor="let p of provinceData" [nzValue]="p" [nzLabel]="p"></nz-option>
+            <nz-select class="custom-select" [(ngModel)]="selectedPage" (ngModelChange)="provinceChange($event)">
+                <nz-option *ngFor="let page of pages" [nzValue]="page" [nzLabel]="page.name"></nz-option>
             </nz-select>
         </div>
-
     </div>
+
 
     <div class="total-comments" style="background-color: white;">
         <div style="margin-left: 20px;">
@@ -53,22 +53,17 @@
         <nz-page-header class="site-page-header" nzTitle="Gráfico por publicación"></nz-page-header>
     </div>
 
-    <div class="container">
 
+
+    <div class="container">
         <div class="select-container">
             <label class="label">Selecciona una publicación:</label>
-
-            <nz-select [(ngModel)]="selectedCity">
-                <nz-option *ngFor="let c of cityData[selectedProvince]" [nzValue]="c" [nzLabel]="c"></nz-option>
+            <nz-select class="custom-select2" [(ngModel)]="selectedPost" (ngModelChange)="comentarioChange($event)">
+                <nz-option *ngFor="let page of posts" [nzValue]="page" [nzLabel]="page.message"></nz-option>
             </nz-select>
         </div>
-
-        <nz-range-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
-        <br>
-
-
-
     </div>
+
 
     <div class="container2">
         <div class="chart-buttons">

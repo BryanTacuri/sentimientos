@@ -16,6 +16,8 @@ import {
   ApexFill,
   ApexAnnotations,
 } from 'ng-apexcharts';
+import { AnalyticsService } from 'src/app/services/analytics.service';
+import { SessionStorageService } from 'src/app/services/session.service';
 
 type ApexXAxis = {
   type?: 'category' | 'datetime' | 'numeric';
@@ -58,11 +60,33 @@ export class AnalyticsComponent implements OnInit {
 
   date: any = null;
   totalComentario: any;
+  access_token: any;
 
-  constructor() {}
+  pages: any[] = []; // Almacena los datos de las páginas
+  posts: any[] = []; // Almacena los datos de las páginas
+
+  selectedPage: any; // Almacena la página seleccionada
+  selectedPost: any;
+
+  constructor(
+    private valueService: SessionStorageService,
+    private analyticsService: AnalyticsService
+  ) {}
 
   ngOnInit(): void {
+    this.access_token = this.valueService.getItem('access_token');
+    this.obtenerPaginas(this.access_token);
     this.generarGraficoGeneral();
+  }
+  obtenerPaginas(access_token: string) {
+    this.analyticsService.obtenerPaginas(access_token).subscribe(
+      (response: any) => {
+        this.pages = response.data;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
   generarGraficoGeneral() {
     this.primerGrafico();
@@ -262,10 +286,6 @@ export class AnalyticsComponent implements OnInit {
     console.log('onChange: ', result);
   }
 
-  getWeek(result: Date[]): void {
-    console.log('week: ', result.map(getISOWeek));
-  }
-
   selectedProvince = 'Zhejiang';
   selectedCity = 'Hangzhou';
   provinceData = ['Zhejiang', 'Jiangsu'];
@@ -275,6 +295,27 @@ export class AnalyticsComponent implements OnInit {
   };
 
   provinceChange(value: string): void {
-    this.selectedCity = this.cityData[value][0];
+    this.selectedPage = value;
+    console.log(this.selectedPage);
+    this.obtenerPosts(this.selectedPage.access_token);
+  }
+
+  comentarioChange(value: string): void {
+    this.selectedPost = value;
+    console.log(this.selectedPage);
+  }
+
+  obtenerPosts(access_token: any) {
+    this.selectedPost = null;
+    console.log('obtener', access_token);
+    this.analyticsService.obtenerPosts(access_token).subscribe(
+      (response: any) => {
+        this.posts = response.data;
+        this.posts = response.data.filter((item: any) => item.message);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 }
