@@ -267,6 +267,8 @@ export class AnalyticsComponent implements OnInit {
 
         this.primerGrafico(endpointData);
         this.segundoGrafico(endpointData);
+        this.mostrarPrimero = true;
+        this.mostrarSegundo = true;
         this.loading = false;
         this.graficosFiltrados = true;
       },
