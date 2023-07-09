@@ -280,14 +280,15 @@ export class AnalyticsComponent implements OnInit {
     );
   }
 
-  postChange(value: string): void {
+  postChange(value: string) {
+    this.selectedPost = null;
     this.selectedPost = value;
     console.log(this.selectedPage);
   }
 
   obtenerPosts(access_token: any) {
     this.loading = true;
-    this.selectedPost = null;
+
     console.log('obtener', access_token);
     this.analyticsService.obtenerPosts(access_token).subscribe(
       (response: any) => {
@@ -521,11 +522,6 @@ export class AnalyticsComponent implements OnInit {
     };
   }
 
-  totalComnetarioSentimiento() {
-    this.mostrarSelect = true;
-    this.selectedSentimiento = '';
-  }
-
   sentimientoChange(value: string): void {
     this.loading = true;
 
@@ -550,6 +546,7 @@ export class AnalyticsComponent implements OnInit {
 
         if (endpointData) {
           console.log('end llego, procede a generar grafico');
+
           this.graficoPastelFecha(endpointData);
         }
 
