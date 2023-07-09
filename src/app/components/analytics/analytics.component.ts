@@ -304,12 +304,11 @@ export class AnalyticsComponent implements OnInit {
 
   totalReaccionesfecha() {
     this.loading = true;
-
     this.graficosFiltrados = false;
     this.mostrarSelect = false;
-
     this.mostrarPrimero = false;
-    this.mostrarSegundo = true;
+    this.mostrarSegundo = false;
+
     var data = {
       idPage: this.selectedPage.id,
       iniDate: this.iniDate,
@@ -321,10 +320,9 @@ export class AnalyticsComponent implements OnInit {
         const endpointData: any = response;
 
         this.graficoPastelFecha(endpointData);
-
         this.graficosFiltrados = true;
+        this.mostrarSegundo = true;
         this.loading = false;
-        this.graficosFiltrados = true;
       },
       (error) => {
         console.error(error);
@@ -541,12 +539,19 @@ export class AnalyticsComponent implements OnInit {
 
       sentiment: value,
     };
+    console.log('lllegue al ultimo paso');
+    this.generar(data);
+  }
 
+  generar(data: any) {
     this.analyticsService.obtenerTotalComentarioSentimiento(data).subscribe(
       (response: any) => {
         const endpointData: any = response;
 
-        this.graficoPastelFecha(endpointData);
+        if (endpointData) {
+          console.log('end llego, procede a generar grafico');
+          this.graficoPastelFecha(endpointData);
+        }
 
         this.mostrarUltmo = true;
         this.loading = false;
