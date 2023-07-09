@@ -301,6 +301,8 @@ export class AnalyticsComponent implements OnInit {
   }
 
   totalReaccionesfecha() {
+    this.loading = true;
+
     this.graficosFiltrados = false;
     this.mostrarSelect = false;
 
@@ -331,11 +333,12 @@ export class AnalyticsComponent implements OnInit {
   }
 
   totalComentariosFecha() {
+    this.loading = true;
     this.graficosFiltrados = false;
     this.mostrarSelect = false;
 
     this.mostrarPrimero = false;
-    this.mostrarSegundo = true;
+    this.mostrarSegundo = false;
     var data = {
       idPage: this.selectedPage.id,
       iniDate: this.iniDate,
@@ -347,10 +350,9 @@ export class AnalyticsComponent implements OnInit {
         const endpointData: any = response;
 
         this.graficoPastelFecha(endpointData);
-
+        this.mostrarSegundo = true;
         this.graficosFiltrados = true;
         this.loading = false;
-        this.graficosFiltrados = true;
       },
       (error) => {
         console.error(error);
@@ -393,6 +395,8 @@ export class AnalyticsComponent implements OnInit {
   }
 
   totalPublicacionesFecha() {
+    this.loading = true;
+
     this.mostrarSelect = false;
 
     this.graficosFiltrados = false;
@@ -523,13 +527,15 @@ export class AnalyticsComponent implements OnInit {
   }
 
   sentimientoChange(value: string): void {
+    this.loading = true;
+
     this.mostrarUltmo = false;
 
     this.selectedSentimiento = value;
 
     var data = {
       idPage: this.selectedPage.id,
-      idFeed: this.selectedPost,
+      idFeed: this.selectedPost.id,
 
       sentiment: value,
     };
