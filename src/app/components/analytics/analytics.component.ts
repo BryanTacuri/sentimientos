@@ -251,8 +251,8 @@ export class AnalyticsComponent implements OnInit {
 
   generarGraficoGeneral(id: String) {
     this.graficosFiltrados = false;
-    this.mostrarPrimero = true;
-    this.mostrarSegundo = true;
+    this.loading = true;
+
     var data = {
       idPage: id,
       iniDate: '2023-07-08',
@@ -262,6 +262,8 @@ export class AnalyticsComponent implements OnInit {
     this.analyticsService.obtenerGraficoGeneral(data).subscribe(
       (response: any) => {
         const endpointData: any = response;
+        console.log(response);
+        console.log(endpointData);
 
         this.primerGrafico(endpointData);
         this.segundoGrafico(endpointData);

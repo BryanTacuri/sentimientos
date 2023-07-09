@@ -54,18 +54,19 @@
 
 
                 <div class="chart-wrapper animate__animated animate__bounceIn" *ngIf="mostrarPrimero">
-                    <apx-chart [series]="chartOptionsGeneral2.series" [chart]="chartOptionsGeneral2.chart"
-                        [dataLabels]="chartOptionsGeneral2.dataLabels" [plotOptions]="chartOptionsGeneral2.plotOptions"
-                        [yaxis]="chartOptionsGeneral2.yaxis" [xaxis]="chartOptionsGeneral2.xaxis"
-                        [legend]="chartOptionsGeneral2.legend" [colors]="chartOptionsGeneral2.colors"
-                        [grid]="chartOptionsGeneral2.grid" class="chart"></apx-chart>
+                    <apx-chart [series]="chartOptionsGeneral2?.series" [chart]="chartOptionsGeneral2?.chart"
+                        [dataLabels]="chartOptionsGeneral2?.dataLabels"
+                        [plotOptions]="chartOptionsGeneral2?.plotOptions" [yaxis]="chartOptionsGeneral2?.yaxis"
+                        [xaxis]="chartOptionsGeneral2?.xaxis" [legend]="chartOptionsGeneral2?.legend"
+                        [colors]="chartOptionsGeneral2?.colors" [grid]="chartOptionsGeneral2?.grid"
+                        class="chart"></apx-chart>
                 </div>
 
                 <div class="chart-wrapper animate__animated animate__bounceIn" id="chart2" *ngIf="mostrarSegundo">
-                    <apx-chart [series]="chartOptionsTotalReaccionesFecha.series"
-                        [chart]="chartOptionsTotalReaccionesFecha.chart"
-                        [labels]="chartOptionsTotalReaccionesFecha.labels"
-                        [responsive]="chartOptionsTotalReaccionesFecha.responsive" class="chart"></apx-chart>
+                    <apx-chart [series]="chartOptionsTotalReaccionesFecha?.series"
+                        [chart]="chartOptionsTotalReaccionesFecha?.chart"
+                        [labels]="chartOptionsTotalReaccionesFecha?.labels"
+                        [responsive]="chartOptionsTotalReaccionesFecha?.responsive" class="chart"></apx-chart>
                 </div>
             </div>
 
