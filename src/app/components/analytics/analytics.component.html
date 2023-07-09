@@ -1,69 +1,87 @@
-<div style="background-color: white;">
+<div class="center animate__animated animate__backInLeft">
 
-    <nz-page-header class="site-page-header" nzTitle="Gráfico general"></nz-page-header>
-</div>
+    <div style="background-color: white;">
 
-<div class="container">
-    <div class="select-container">
-        <label class="label">Selecciona una página:</label>
-        <nz-select class="custom-select" [(ngModel)]="selectedProvince" (ngModelChange)="provinceChange($event)">
-            <nz-option *ngFor="let p of provinceData" [nzValue]="p" [nzLabel]="p"></nz-option>
-        </nz-select>
+        <nz-page-header class="site-page-header" nzTitle="Gráfico general"></nz-page-header>
     </div>
 
-</div>
 
+    <div class="container">
+        <div class="select-container">
+            <label class="label">Selecciona una página:</label>
+            <nz-select class="custom-select" [(ngModel)]="selectedProvince" (ngModelChange)="provinceChange($event)">
+                <nz-option *ngFor="let p of provinceData" [nzValue]="p" [nzLabel]="p"></nz-option>
+            </nz-select>
+        </div>
 
-<div class="container-c">
-    <div class="chart-wrapper">
-        <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
-            [plotOptions]="chartOptions.plotOptions" [yaxis]="chartOptions.yaxis" [xaxis]="chartOptions.xaxis"
-            [legend]="chartOptions.legend" [colors]="chartOptions.colors" [grid]="chartOptions.grid"
-            class="chart"></apx-chart>
     </div>
 
-    <div class="chart-wrapper">
-        <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart" [labels]="chartOptions2.labels"
-            [fill]="chartOptions2.fill" [dataLabels]="chartOptions2.dataLabels" [responsive]="chartOptions2.responsive"
-            class="chart"></apx-chart>
-    </div>
-</div>
+    <div class="total-comments" style="background-color: white;">
+        <div style="margin-left: 20px;">
 
-
-
-
-<div style="background-color: white;">
-
-    <nz-page-header class="site-page-header" nzTitle="Gráfico por publicación"></nz-page-header>
-</div>
-
-<div class="container">
-
-    <div class="select-container">
-        <label class="label">Selecciona una publicación:</label>
-
-        <nz-select [(ngModel)]="selectedCity">
-            <nz-option *ngFor="let c of cityData[selectedProvince]" [nzValue]="c" [nzLabel]="c"></nz-option>
-        </nz-select>
+            <span>Total de Comentarios: </span>
+            <span>{{ totalComentario }}</span>
+        </div>
     </div>
 
-    <nz-range-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
-    <br>
 
+    <div class="container-c" style=>
+
+
+        <div class="chart-wrapper">
+            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                [dataLabels]="chartOptions.dataLabels" [plotOptions]="chartOptions.plotOptions"
+                [yaxis]="chartOptions.yaxis" [xaxis]="chartOptions.xaxis" [legend]="chartOptions.legend"
+                [colors]="chartOptions.colors" [grid]="chartOptions.grid" class="chart"></apx-chart>
+        </div>
+
+        <div class="chart-wrapper" id="chart2">
+            <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart" [labels]="chartOptions2.labels"
+                [responsive]="chartOptions2.responsive" class="chart"></apx-chart>
+
+
+        </div>
+    </div>
 
 
 </div>
 
-<div class="container2">
-    <div class="chart-buttons">
-        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Grafico 1</button>
-        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Grafico 2</button>
-        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Grafico 3</button>
-        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Grafico 4</button>
+<div class="center animate__animated animate__backInRight">
+
+    <div style="background-color: white;">
+
+        <nz-page-header class="site-page-header" nzTitle="Gráfico por publicación"></nz-page-header>
     </div>
 
+    <div class="container">
 
-    <div class="chart">
-        <!-- Aquí se mostrarán los gráficos adicionales -->
+        <div class="select-container">
+            <label class="label">Selecciona una publicación:</label>
+
+            <nz-select [(ngModel)]="selectedCity">
+                <nz-option *ngFor="let c of cityData[selectedProvince]" [nzValue]="c" [nzLabel]="c"></nz-option>
+            </nz-select>
+        </div>
+
+        <nz-range-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
+        <br>
+
+
+
     </div>
+
+    <div class="container2">
+        <div class="chart-buttons">
+            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Grafico 1</button>
+            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Grafico 2</button>
+            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Grafico 3</button>
+            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Grafico 4</button>
+        </div>
+
+
+        <div class="chart">
+            <!-- Aquí se mostrarán los gráficos adicionales -->
+        </div>
+    </div>
+
 </div>

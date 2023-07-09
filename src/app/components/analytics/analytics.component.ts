@@ -14,6 +14,7 @@ import {
   ApexNonAxisChartSeries,
   ApexResponsive,
   ApexFill,
+  ApexAnnotations,
 } from 'ng-apexcharts';
 
 type ApexXAxis = {
@@ -43,9 +44,6 @@ export type ChartOptions2 = {
   chart: ApexChart;
   responsive: ApexResponsive[];
   labels: any;
-  fill: ApexFill;
-  legend: ApexLegend;
-  dataLabels: ApexDataLabels;
 };
 @Component({
   selector: 'app-analytics',
@@ -59,6 +57,7 @@ export class AnalyticsComponent implements OnInit {
   public chartOptions2: Partial<ChartOptions2>;
 
   date: any = null;
+  totalComentario: any;
 
   constructor() {}
 
@@ -66,11 +65,133 @@ export class AnalyticsComponent implements OnInit {
     this.generarGraficoGeneral();
   }
   generarGraficoGeneral() {
+    this.primerGrafico();
+    this.segundoGrafico();
+  }
+  segundoGrafico() {
+    // Obtener los datos del endpoint
+    const endpointData: any = {
+      access_token: null,
+      name: null,
+      id: null,
+      listFeed: [
+        {
+          id: '660261270686611_776103240971957',
+          message: 'test',
+          created_time: '2023-07-08T07:33:11+0000',
+          totalComentario: '3',
+        },
+        {
+          id: '660261270686611_654098323172450',
+          message:
+            'Honor y respeto a los grandes maestros  gracias por tomar en cuenta a este cervidor un fuerte abrazo  a mis hermano Adrian Chillemi y a Luis Romero mis respetos siempre',
+          created_time: '2022-12-20T19:03:40+0000',
+          totalComentario: '5',
+        },
+        {
+          id: '660261270686611_4639085656137466',
+          message: null,
+          created_time: '2021-07-14T18:36:27+0000',
+          totalComentario: '10',
+        },
+      ],
+      totalComentario: 2,
+      totalComments: {
+        positive: 10,
+        negative: 3,
+        neutral: 4,
+      },
+    };
+    // Obtener los valores de "totalComentario" y "totalComments"
+    this.totalComentario = endpointData.totalComentario;
+    const totalPositive = endpointData.totalComments.positive;
+    const totalNegative = endpointData.totalComments.negative;
+    const totalNeutral = endpointData.totalComments.neutral;
+
+    this.chartOptions2 = {
+      series: [totalPositive, totalNegative, totalNeutral],
+      chart: {
+        width: 380,
+        type: 'pie',
+      },
+
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200,
+            },
+            legend: {
+              position: 'bottom',
+            },
+          },
+        },
+      ],
+      labels: ['Positivo', 'Negativo', 'Neutral'], // Nombres de las series
+    };
+  }
+  primerGrafico() {
+    // Obtener los datos del endpoint
+    const endpointData: any = {
+      access_token: null,
+      name: null,
+      id: null,
+      listFeed: [
+        {
+          id: '660261270686611_776103240971957',
+          message: 'test',
+          created_time: '2023-07-08T07:33:11+0000',
+          totalComentario: '3',
+        },
+        {
+          id: '660261270686611_654098323172450',
+          message:
+            'Honor y respeto a los grandes maestros  gracias por tomar en cuenta a este cervidor un fuerte abrazo  a mis hermano Adrian Chillemi y a Luis Romero mis respetos siempre',
+          created_time: '2022-12-20T19:03:40+0000',
+          totalComentario: '5',
+        },
+        {
+          id: '660261270686611_4639085656137466',
+          message: null,
+          created_time: '2021-07-14T18:36:27+0000',
+          totalComentario: '10',
+        },
+      ],
+      totalComentario: 2,
+      totalComments: {
+        positive: 10,
+        negative: 3,
+        neutral: 4,
+      },
+    };
+
+    // Crear los arrays para almacenar los datos del gráfico
+    const categories: any = [];
+    const data = [];
+
+    // Iterar sobre el array listFeed del endpointData
+    for (const item of endpointData.listFeed) {
+      // Obtener los valores necesarios para el gráfico
+      const message = item.message
+        ? item.message.length > 15
+          ? item.message.substring(0, 15) + '...'
+          : item.message
+        : '';
+      const totalComentario = parseInt(item.totalComentario);
+      const category = [message]; // Ejemplo: ['1', '1']
+
+      // Agregar los valores al array categories y data
+      categories.push(category);
+      data.push(totalComentario);
+    }
+
+    // Actualizar el chartOptions con los nuevos datos
     this.chartOptions = {
       series: [
         {
           name: 'distibuted',
-          data: [21, 22, 10, 28, 16, 21, 13, 30],
+          data: data,
         },
       ],
       chart: {
@@ -108,16 +229,7 @@ export class AnalyticsComponent implements OnInit {
         show: false,
       },
       xaxis: {
-        categories: [
-          ['John', 'Doe'],
-          ['Joe', 'Smith'],
-          ['Jake', 'Williams'],
-          'Amber',
-          ['Peter', 'Brown'],
-          ['Mary', 'Evans'],
-          ['David', 'Wilson'],
-          ['Lily', 'Roberts'],
-        ],
+        categories: categories,
         labels: {
           style: {
             colors: [
@@ -134,38 +246,15 @@ export class AnalyticsComponent implements OnInit {
           },
         },
       },
-    };
-
-    this.chartOptions2 = {
-      series: [44, 55, 41, 17, 15],
-      chart: {
-        width: 380,
-        type: 'donut',
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      fill: {
-        type: 'gradient',
-      },
-      legend: {
-        formatter: function (val, opts) {
-          return val + ' - ' + opts.w.globals.series[opts.seriesIndex];
-        },
-      },
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200,
-            },
-            legend: {
-              position: 'bottom',
-            },
+      yaxis: {
+        labels: {
+          style: {
+            colors: ['#333'],
+            fontSize: '12px',
+            fontWeight: 'bold',
           },
         },
-      ],
+      },
     };
   }
 
