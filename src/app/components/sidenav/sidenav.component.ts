@@ -5,6 +5,7 @@ import {
   SocialAuthService,
 } from 'angularx-social-login';
 import { AuthService } from 'src/app/auth/auth.service';
+import { SessionStorageService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -25,7 +26,7 @@ export class SidenavComponent implements OnInit {
 
   constructor(
     private router: Router,
-    public valueService: AuthService,
+    public valueService: SessionStorageService,
     private authServiceFB: SocialAuthService
   ) {
     this.getRoutes();
@@ -36,7 +37,7 @@ export class SidenavComponent implements OnInit {
       console.log(this.user);
       this.loggedIn = user != null;
       if (this.loggedIn) {
-        console.log('entro');
+        this.valueService.setItem('access_token', user.authToken);
         this.router.navigate(['/analytics']);
       }
     });
@@ -52,11 +53,6 @@ export class SidenavComponent implements OnInit {
     if (isSmallScreen) {
       this.isCollapsed = true;
     }
-  }
-
-  onLogout() {
-    this.valueService.CerrarSesion();
-    this.router.navigate(['/login']);
   }
 
   toggleCollapsed(): void {

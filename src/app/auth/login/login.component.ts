@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     if (formData.usuario == 'admin' && formData.password == 'admin') {
       this.authService.setIsAuth(true);
-      setTimeout(() => {
+      setTimeout(() => { 
         this.loading = false;
         this.router.navigate(['/analytics']);
       }, 1200);
