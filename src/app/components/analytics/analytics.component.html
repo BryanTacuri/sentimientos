@@ -1,117 +1,53 @@
 <nz-spin [nzSpinning]="loading">
 
 
-
-    <div class="center animate__animated animate__backInLeft">
-
-        <div style="background-color: white;">
-
-            <nz-page-header class="site-page-header" nzTitle="Gráfico general"></nz-page-header>
-        </div>
+    <div style="background-color: white;">
 
 
-        <div class="container">
-            <div class="select-container">
-                <label class="label">Selecciona una página:</label>
-                <nz-select class="custom-select" [(ngModel)]="selectedPage" (ngModelChange)="pageChange($event)">
-                    <nz-option *ngFor="let page of pages" [nzValue]="page" [nzLabel]="page.name"></nz-option>
-                </nz-select>
-            </div>
-        </div>
+        <div class="center animate__animated animate__backInLeft">
 
+            <div style="background-color: white;">
 
-        <div class="total-comments" style="background-color: white;" *ngIf="graficos">
-            <div style="margin-left: 20px;">
-
-                <span>Total de Comentarios: </span>
-                <span>{{ totalComentario }}</span>
-            </div>
-        </div>
-
-
-        <div class="container-c" *ngIf="graficos">
-
-
-            <div class="chart-wrapper animate__animated animate__bounceIn">
-                <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
-                    [dataLabels]="chartOptions.dataLabels" [plotOptions]="chartOptions.plotOptions"
-                    [yaxis]="chartOptions.yaxis" [xaxis]="chartOptions.xaxis" [legend]="chartOptions.legend"
-                    [colors]="chartOptions.colors" [grid]="chartOptions.grid" class="chart"></apx-chart>
+                <nz-page-header class="site-page-header" nzTitle="Gráfico general"></nz-page-header>
             </div>
 
-            <div class="chart-wrapper animate__animated animate__bounceIn" id="chart2">
-                <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart" [labels]="chartOptions2.labels"
-                    [responsive]="chartOptions2.responsive" class="chart"></apx-chart>
 
+            <div class="container">
+                <div class="select-container">
+                    <label class="label">Selecciona una página:</label>
+                    <nz-select class="custom-select" [(ngModel)]="selectedPage" (ngModelChange)="pageChange($event)">
+                        <nz-option *ngFor="let page of pages" [nzValue]="page" [nzLabel]="page.name"></nz-option>
+                    </nz-select>
+                </div>
 
+                <nz-range-picker *ngIf="selectedPage" [(ngModel)]="date"
+                    (ngModelChange)="onChange($event)"></nz-range-picker>
+                <br>
             </div>
-        </div>
-
-
-    </div>
-
-    <div class="center animate__animated animate__backInRight">
-
-        <div style="background-color: white;">
-
-            <nz-page-header class="site-page-header" nzTitle="Gráfico por publicación"></nz-page-header>
-        </div>
-
-
-
-        <div class="container">
-            <div class="select-container">
-                <label class="label">Selecciona una publicación:</label>
-                <nz-select class="custom-select2" [(ngModel)]="selectedPost" (ngModelChange)="postChange($event)">
-                    <nz-option *ngFor="let page of posts" [nzValue]="page" [nzLabel]="page.message"></nz-option>
-                </nz-select>
-            </div>
-            <nz-range-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
-            <br />
-        </div>
 
 
 
 
-        <div class="container2">
-            <div class="chart-buttons">
+            <div class="chart-buttons" *ngIf="selectedPage">
                 <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'"
                     (click)="totalComentariosFecha()">Comentarios por fecha</button>
                 <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'"
                     (click)="totalPublicacionesFecha()">Publicaciones por fecha</button>
-                <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'"
-                    (click)="totalComnetarioSentimiento()">Sentimientos por publicación</button>
+
                 <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'"
                     (click)="totalReaccionesfecha()">Reacciones por
                     fecha</button>
             </div>
 
 
-            <div class="container" *ngIf="mostrarSelect">
-                <div class="select-container">
-                    <label class="label">Selecciona una sentimiento:</label>
-                    <nz-select class="custom-select" [(ngModel)]="selectedSentimiento"
-                        (ngModelChange)="sentimientoChange($event)">
-                        <nz-option nzValue="P" nzLabel="Positivo (P)"></nz-option>
-                        <nz-option nzValue="I" nzLabel="Negativo (I)"></nz-option>
-                        <nz-option nzValue="N" nzLabel="Neutral (N)"></nz-option>
-                    </nz-select>
-                </div>
-            </div>
-
-
-
-
             <div class="total-comments" style="background-color: white;"
-                *ngIf="graficosFiltrados && totalComentarioGeneralFiltrado!= '0'">
+                *ngIf="graficosFiltrados  &&totalComentarioGeneralFiltrado!= '0'">
                 <div style="margin-left: 20px;">
 
                     <span>Total de Comentarios: </span>
                     <span>{{ totalComentarioGeneralFiltrado }}</span>
                 </div>
             </div>
-
-
 
 
             <div class="container-c" *ngIf="graficosFiltrados">
@@ -133,8 +69,70 @@
                 </div>
             </div>
 
+
         </div>
 
-    </div>
+        <div class="center animate__animated animate__backInRight">
 
+            <div style="background-color: white;">
+
+                <nz-page-header class="site-page-header" nzTitle="Gráfico por publicación"></nz-page-header>
+            </div>
+
+
+
+            <div class="container">
+                <div class="select-container">
+                    <label class="label">Selecciona una publicación:</label>
+                    <nz-select class="custom-select2" [(ngModel)]="selectedPost" (ngModelChange)="postChange($event)">
+                        <nz-option *ngFor="let page of posts" [nzValue]="page" [nzLabel]="page.message"></nz-option>
+                    </nz-select>
+                </div>
+                <br />
+            </div>
+
+
+
+
+            <div class="container2">
+
+
+                <div class="container" *ngIf="selectedPost">
+                    <div class="select-container">
+                        <label class="label">Selecciona una sentimiento:</label>
+                        <nz-select class="custom-select" [(ngModel)]="selectedSentimiento"
+                            (ngModelChange)="sentimientoChange($event)">
+                            <nz-option nzValue="P" nzLabel="Positivo (P)"></nz-option>
+                            <nz-option nzValue="I" nzLabel="Negativo (I)"></nz-option>
+                            <nz-option nzValue="N" nzLabel="Neutral (N)"></nz-option>
+                        </nz-select>
+                    </div>
+                </div>
+
+
+
+
+                <div class="total-comments" style="background-color: white;"
+                    *ngIf="mostrarUltmo && totalComentarioGeneralFiltrado2!= '0'">
+                    <div style="margin-left: 20px;">
+
+                        <span>Total de Comentarios: </span>
+                        <span>{{ totalComentarioGeneralFiltrado2 }}</span>
+                    </div>
+                </div>
+
+
+                <div class="container-c" *ngIf="mostrarUltmo">
+                    <div class="chart-wrapper animate__animated animate__bounceIn" id="chart2" *ngIf="mostrarUltmo">
+                        <apx-chart [series]="chartOptionsTotalReaccionesFecha2.series"
+                            [chart]="chartOptionsTotalReaccionesFecha2.chart"
+                            [labels]="chartOptionsTotalReaccionesFecha2.labels"
+                            [responsive]="chartOptionsTotalReaccionesFecha2.responsive" class="chart"></apx-chart>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 </nz-spin>

@@ -58,6 +58,8 @@ export class AnalyticsComponent implements OnInit {
   public chartOptions: Partial<ChartOptions>;
   public chartOptions2: Partial<ChartOptions2>;
   public chartOptionsTotalReaccionesFecha: Partial<ChartOptions2>;
+  public chartOptionsTotalReaccionesFecha2: Partial<ChartOptions2>;
+
   public chartOptionsGeneral2: Partial<ChartOptions>;
 
   date: any = null;
@@ -82,6 +84,8 @@ export class AnalyticsComponent implements OnInit {
   mostrarSegundo: boolean;
   mostrarSelect: boolean;
   selectedSentimiento: any;
+  mostrarUltmo: boolean;
+  totalComentarioGeneralFiltrado2: any;
 
   constructor(
     private valueService: SessionStorageService,
@@ -246,6 +250,9 @@ export class AnalyticsComponent implements OnInit {
   }
 
   generarGraficoGeneral(id: String) {
+    this.graficosFiltrados = false;
+    this.mostrarPrimero = true;
+    this.mostrarSegundo = true;
     var data = {
       idPage: id,
       iniDate: '2023-07-08',
@@ -278,7 +285,7 @@ export class AnalyticsComponent implements OnInit {
           totalComentario: '10',
         },
       ],
-      totalComentario: 2,
+      totalComentario: 10,
       totalComments: {
         positive: 10,
         negative: 3,
@@ -286,10 +293,10 @@ export class AnalyticsComponent implements OnInit {
       },
     };
 
-    this.primerGrafico(endpointData);
-    this.segundoGrafico(endpointData);
+    this.graficoPublicacionesFecha1(endpointData);
+    this.graficoPastelFecha(endpointData);
 
-    this.graficos = true;
+    this.graficosFiltrados = true;
 
     //desde aqui dejar
     /*
@@ -402,7 +409,7 @@ export class AnalyticsComponent implements OnInit {
           totalComentario: '10',
         },
       ],
-      totalComentario: 2,
+      totalComentario: 12,
       totalComments: {
         positive: 10,
         negative: 3,
@@ -482,7 +489,7 @@ export class AnalyticsComponent implements OnInit {
           totalComentario: '10',
         },
       ],
-      totalComentario: 2,
+      totalComentario: 0,
       totalComments: {
         positive: 10,
         negative: 3,
@@ -594,7 +601,7 @@ export class AnalyticsComponent implements OnInit {
           totalComentario: '10',
         },
       ],
-      totalComentario: 2,
+      totalComentario: 11,
       totalComments: {
         positive: 10,
         negative: 3,
@@ -756,17 +763,11 @@ export class AnalyticsComponent implements OnInit {
 
   totalComnetarioSentimiento() {
     this.mostrarSelect = true;
-    this.graficosFiltrados = false;
-    this.mostrarPrimero = false;
-    this.mostrarSegundo = false;
     this.selectedSentimiento = '';
   }
 
   sentimientoChange(value: string): void {
-    this.mostrarSelect = true;
-    this.graficosFiltrados = false;
-    this.mostrarPrimero = false;
-    this.mostrarSegundo = true;
+    this.mostrarUltmo = false;
 
     this.selectedSentimiento = value;
 
@@ -810,9 +811,9 @@ export class AnalyticsComponent implements OnInit {
       },
     };
 
-    this.graficoPastelFecha(endpointData);
+    this.graficoPastelFechaUltimo(endpointData);
 
-    this.graficosFiltrados = true;
+    this.mostrarUltmo = true;
 
     //desde aqui dejar
     /*
@@ -833,15 +834,47 @@ export class AnalyticsComponent implements OnInit {
 
         this.graficoPastelFecha(endpointData);
 
-        this.graficosFiltrados = true;
+        this.mostrarUltmo = true;
         this.loading = false;
-        this.graficosFiltrados = true;
       },
       (error) => {
         console.error(error);
         this.loading = false;
-        this.graficosFiltrados = false;
+        this.mostrarUltmo = false;
       }
     ); */
+  }
+
+  graficoPastelFechaUltimo(endpointData: any) {
+    // Obtener los valores de "totalComentario" y "totalComments"
+    this.totalComentarioGeneralFiltrado2 = endpointData.totalComentario;
+    const totalPositive = endpointData.totalComments.positive;
+    const totalNegative = endpointData.totalComments.negative;
+    const totalNeutral = endpointData.totalComments.neutral;
+
+    console.log(totalNegative, totalNeutral, totalPositive);
+
+    this.chartOptionsTotalReaccionesFecha2 = {
+      series: [totalPositive, totalNegative, totalNeutral],
+      chart: {
+        width: 380,
+        type: 'pie',
+      },
+
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200,
+            },
+            legend: {
+              position: 'bottom',
+            },
+          },
+        },
+      ],
+      labels: ['Positivo', 'Negativo', 'Neutral'], // Nombres de las series
+    };
   }
 }
